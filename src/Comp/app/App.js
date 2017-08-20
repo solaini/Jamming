@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchBar from './Comp/SearchBar/SearchBar';
-import SearchResult from './Comp/SearchResults/SearchResults';
-import Playlist from './Comp/Playlist/Playlist';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResult from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
 
 
 const playlistName = "Summer 2017";
@@ -27,12 +27,14 @@ class App extends Component {
     
     //need to set the state to an array of objects?  searchResults to show multiple sets per below - double check
     this.state = {
-      searchResults: [{
-        name: '',
-        artist: '',
-        album: ''
-      }]
-  }
+          searchResults: [{
+            name: '',
+            artist: '',
+            album: ''
+          }]
+        }
+        
+
 }
 
   render() {
@@ -43,7 +45,7 @@ class App extends Component {
         <SearchBar />
         <div className="App-playlist">
           <SearchResult searchResults={this.state.searchResults}/>
-          <Playlist />
+          <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
       </div>
     </div>

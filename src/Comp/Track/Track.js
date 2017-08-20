@@ -1,6 +1,7 @@
 import React from 'react';
 import './Track.css';
 
+
 class Track extends React.Component{
     constructor(props){
         super(props);
@@ -8,8 +9,8 @@ class Track extends React.Component{
     }
 //Create a method called renderAction that displays a - anchor tag if a passed down property is true, 
 //and a + anchor tag if the property is false. Set the class name to Track-action.
-    let flag = '';
     renderAction() {
+        let flag = '';
         passedProperty ? flag = '-' : flag = '+';
     }
 
