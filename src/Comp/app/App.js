@@ -11,6 +11,8 @@ class App extends Component {
     
     //need to set the state to an array of objects?  searchResults to show multiple sets per below - double check
     this.state = {
+          term: '',
+          playlistName: '',
           searchResults: [{
             name: '',
             artist: '',
@@ -37,6 +39,7 @@ class App extends Component {
         this.removeTrack = this.removeTrack.bind(this);
         this.updatePlaylistName = this.updatePlaylistName.bind(this);
         this.savePlaylist = this.savePlaylist.bind(this);
+        this.search = this.search.bind(this);
     }
 
   addTrack (track) {
@@ -52,12 +55,21 @@ class App extends Component {
     });
   }
 
-  updatePlaylistName(name){
+  updatePlaylistName(e){
+    let name = e.target.value;
     this.setState({playlistName: name});
   }
 
+  //spotify URI request #63
   savePlaylist() {
-    
+    let trackURIs = this.state.playlistTracks.map(trackName => {
+    return `spotify:track:${this.playlistTracks.name[trackName]}`});
+    console.log(trackURIs);
+    }
+  //Search Functionality
+  search(e){
+    this.setState({term: e.target.value});
+    console.log(this.term);
   }
 
   render() {
@@ -65,11 +77,11 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={this.state.search}/>
         <div className="App-playlist">
           <SearchResult searchResults={this.state.searchResults}  onAdd={this.addTrack}/>
           <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} 
-          onNameChange={this.updatePlaylistName}/>
+          onNameChange={this.updatePlaylistName} onSave={this.savePlaylist}/>
         </div>
       </div>
     </div>

@@ -12,13 +12,11 @@ class Track extends React.Component{
 //Create a method called renderAction that displays a - anchor tag if a passed down property is true, 
 //and a + anchor tag if the property is false. Set the class name to Track-action.
 
-    renderAction(flag){
-       let anchor = '';
-        if(flag === true){
-            anchor = '-';
-       }else{
-           anchor = '+';
-       }
+    renderAction() {
+        if (this.props.isRemoval) {
+        return <a className="Track-action" onClick={this.removeTrack}>-</a>
+        }
+        return <a className="Track-action" onClick={this.addTrack}>+</a>;
     }
 
     addTrack(track) {
@@ -36,7 +34,7 @@ class Track extends React.Component{
               <h3>{this.props.track.name}</h3>
               <p>{this.props.track.artist} | {this.props.track.album}</p>  {/*this is Step 35 correct?*/}
             </div>
-            <a className="Track-action">{anchor}</a> {/*Action number 27*/}
+            {this.renderAction}
           </div>
         )
     }
